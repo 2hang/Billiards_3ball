@@ -1,5 +1,5 @@
 #include "OurBilliards.hpp"
-int MAINBALL = 0;	//1ÀÌ ³ë¶õ»ö 0ÀÌ Èò»ö
+int MAINBALL = 0;	//1ì´ ë…¸ë€ìƒ‰ 0ì´ í°ìƒ‰
 
 int main(int argc, char** argv) {
 
@@ -33,19 +33,19 @@ int main(int argc, char** argv) {
 		if (src.empty()) 	break;         
 		src = src(rect);
 		
-		//°¢ °øÀÇ Á¤º¸ ÀúÀå
+		//ê° ê³µì˜ ì •ë³´ ì €ì¥
 		billiards.A_findColor(src, 14, 0, 76, 103, 110, 255, 0, 0, 0, ball_white);	
 		billiards.A_findColor(src, 15, 102, 50, 40, 255, 255, 0, 0, 0, ball_yellow);	
 		billiards.A_findColor(src, 160, 56, 0, 180, 255, 255, 0, 255, 0, ball_red);
 
 		
 		/*
-		if (collisionSuccess && cushionSuccess && start)	//¸Ç Ã³À½Àº µğÆúÆ®°ªÀ¸·Î ¸ğµÎ trueÀÌ¹Ç·Î start·Î ¸Ç Ã³À½ ½ÃÀÛÀº Á¦¿Ü.
+		if (collisionSuccess && cushionSuccess && start)	//ë§¨ ì²˜ìŒì€ ë””í´íŠ¸ê°’ìœ¼ë¡œ ëª¨ë‘ trueì´ë¯€ë¡œ startë¡œ ë§¨ ì²˜ìŒ ì‹œì‘ì€ ì œì™¸.
 		{
-		//¼º°ø Á¡¼ö 1Á¡ Åë½Å ºÎºĞ
+		//ì„±ê³µ ì ìˆ˜ 1ì  í†µì‹  ë¶€ë¶„
 			thread t1;
 		}
-		if (collisionSuccess == false || cushionSuccess == false) {	//ÇÑ°³¶óµµ ½ÇÆĞÇÏ¸é º¼Ä®¶ó ¹Ù²ñ
+		if (collisionSuccess == false || cushionSuccess == false) {	//í•œê°œë¼ë„ ì‹¤íŒ¨í•˜ë©´ ë³¼ì¹¼ë¼ ë°”ë€œ
 			if (MAINBALL == 1) {
 				MAINBALL = 0;	mainBall = ball_white;	sub1Ball = ball_yellow;
 			}
@@ -57,13 +57,13 @@ int main(int argc, char** argv) {
 		start = true;
 		*/
 
-		//ÅÏ ¸¶´ÙÀÇ ¸ŞÀÎ,¼­ºê1 °è¼Ó ¹Ù²ñ. (»¡°£ °øÀº °íÁ¤)
+		//í„´ ë§ˆë‹¤ì˜ ë©”ì¸,ì„œë¸Œ1 ê³„ì† ë°”ë€œ. (ë¹¨ê°„ ê³µì€ ê³ ì •)
 		//collisionSuccess = billiards.collision(src, mainBall, sub1Ball, ball_red);
 		collisionSuccess = billiards.collision(src, ball_white, ball_yellow, ball_red);
 
-		//Äí¼Ç ¼º°ø¿©ºÎ ÆÇ´Ü
-		//billiards.collisionWithWall(src, Rect(10, 20, 620, 310), mainBall, cushionCount);
-		billiards.collisionWithWall(src, Rect(10, 20, 620, 310), ball_white, cushionCount);
+		//ì¿ ì…˜ ì„±ê³µì—¬ë¶€ íŒë‹¨
+		billiards.collisionWithWall(src, Rect(10, 20, 620, 310), mainBall, cushionCount);
+		//billiards.collisionWithWall(src, Rect(10, 20, 620, 310), ball_white, cushionCount);
 
 		imshow("Video", src);
 		char c = (char)waitKey(100);
@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
 			break;
 	}
 
-	if (billiards.is3CushionSuccess(cushionCount)) //Äí¼Ç ¼º°ø¿©ºÎ
+	if (billiards.is3CushionSuccess(cushionCount)) //ì¿ ì…˜ ì„±ê³µì—¬ë¶€
 		cout << "cusionSuccess" << endl;
 	if (billiards.Collision_Success()) {
 		cout << "collisionSuccess" << endl;
@@ -83,8 +83,8 @@ int main(int argc, char** argv) {
 
 
 /*
-//Á¤Àº »ı°¢
-Ãæµ¹ÀÌ¶û Äí¼ÇÀÌ Á¤È®È÷ ³¡³µ´Ù´Â ÆÇ´ÜÀÌ ÀÖ°í³ª¼­ bool°ªÀ» ¹İÈ¯ÇØÁà¾ßÇÔ. 
-±×·¸Áö ¾ÊÀ¸¸é, °è¼Ó false°ªÀ» ÁÖ¸é À§ÀÇ ÇüÅÂ¿¡¼­´Â °è¼ÓÇÏ¿© main°ø °ªÀÌ º¯°æµÊ.
-´Ù¸¥ ¹æ¹ıÀ» »óÀÇÇØº¸°Å³ª Á¤È®È÷ ³¡³µ´Ù°í ÆÇ´ÜµÇ¾úÀ»¶§ °ªÀ» ÁÖ´ø°¡ ÇØ¾ßÇÕ´Ï´ç.
+//ì •ì€ ìƒê°
+ì¶©ëŒì´ë‘ ì¿ ì…˜ì´ ì •í™•íˆ ëë‚¬ë‹¤ëŠ” íŒë‹¨ì´ ìˆê³ ë‚˜ì„œ boolê°’ì„ ë°˜í™˜í•´ì¤˜ì•¼í•¨. 
+ê·¸ë ‡ì§€ ì•Šìœ¼ë©´, ê³„ì† falseê°’ì„ ì£¼ë©´ ìœ„ì˜ í˜•íƒœì—ì„œëŠ” ê³„ì†í•˜ì—¬ mainê³µ ê°’ì´ ë³€ê²½ë¨.
+ë‹¤ë¥¸ ë°©ë²•ì„ ìƒì˜í•´ë³´ê±°ë‚˜ ì •í™•íˆ ëë‚¬ë‹¤ê³  íŒë‹¨ë˜ì—ˆì„ë•Œ ê°’ì„ ì£¼ë˜ê°€ í•´ì•¼í•©ë‹ˆë‹¹.
 */
